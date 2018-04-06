@@ -1,3 +1,7 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -20,6 +24,18 @@
 
 .App-intro {
   font-size: large;
+}
+
+.linkNavBar {
+  color: rgba(255,255,255,.5);
+}
+
+.linkNavBar:hover {
+  color: #fff;
+}
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
 }
 
 @keyframes App-logo-spin {
