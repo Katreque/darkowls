@@ -7,6 +7,8 @@ class Homepage extends Component {
       <div>
         <Navbar />
         <Slider />
+        <SubInfoContainer />
+        <BodySuperior />
       </div>
     )
   }
@@ -101,6 +103,46 @@ class InfosImportantesContainer extends Component {
           <footer className="blockquote-footer">Yoda em <cite title="Source Title">Kappa Pride City</cite></footer>
         </blockquote>
 
+      </div>
+    )
+  }
+}
+
+class SubInfoContainer extends Component {
+  render() {
+    return (
+      <div className="container-fluid mb-4">
+        <div className="col-sm-12 m-0 mt-3 text-center">
+          <h1 className="display-2 d-none d-md-block">KappaPride</h1>
+          <h1 className="display-5 d-sm-none">KappaPride</h1>
+          <h3 className="text-muted">Subtítulo PogChamp</h3>
+        </div>
+        <div className="container mt-4 text-center">
+          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
+        </div>
+      </div>
+    )
+  }
+}
+
+class BodySuperior extends Component {
+  render() {
+    return (
+      <div className="row m-0 p-4" style={{backgroundColor: '#A3A3AB'}}>
+        <div className="col-sm-12 text-center">
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+          <h1>Form Futuro Kappa Pride Fon</h1>
+        </div>
       </div>
     )
   }
