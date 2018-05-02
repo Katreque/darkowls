@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 
+class App extends Component {
+  render() {
+    return (
+      <Homepage />
+    );
+  }
+}
+
 class Homepage extends Component {
   render() {
     return (
@@ -109,50 +117,170 @@ class InfosImportantesContainer extends Component {
 }
 
 class SubInfoContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleFromObjetivo: false,
+      toggleFromParticipar: false,
+      toggleFromRegras: false
+    }
+
+    this.toggleFromObjetivo = this.toggleFromObjetivo.bind(this);
+    this.toggleFromParticipar = this.toggleFromParticipar.bind(this);
+    this.toggleFromRegras = this.toggleFromRegras.bind(this);
+  }
+
+  toggleFromObjetivo() {
+    let estado = this.state.toggleFromObjetivo;
+    this.toggleOffAll();
+    this.setState({
+      toggleFromObjetivo: !estado
+    })
+  }
+
+  toggleFromParticipar() {
+    let estado = this.state.toggleFromParticipar;
+    this.toggleOffAll();
+    this.setState({
+      toggleFromParticipar: !estado
+    })
+  }
+
+  toggleFromRegras() {
+    let estado = this.state.toggleFromRegras;
+    this.toggleOffAll();
+    this.setState({
+      toggleFromRegras: !estado
+    })
+  }
+
+  toggleOffAll() {
+    this.setState({
+      toggleFromObjetivo: false,
+      toggleFromParticipar: false,
+      toggleFromRegras: false
+    })
+  }
+
   render() {
     return (
       <div className="container-fluid mb-4">
-        <div className="col-sm-12 m-0 mt-3 text-center">
+        <div className="col-md-12 m-0 mt-3 text-center">
           <h1 className="display-2 d-none d-md-block">KappaPride</h1>
           <h1 className="display-5 d-sm-none">KappaPride</h1>
           <h3 className="text-muted">Subtítulo PogChamp</h3>
         </div>
-        <div className="container mt-4 text-center">
-          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2"></img>
+        {/*Grandes Devices */}
+        <div className="col-md-12 mt-4 text-center d-none d-md-block">
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromObjetivo}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromParticipar}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromRegras}></img>
+          <Objetivo toggle={this.state.toggleFromObjetivo} />
+          <Participar toggle={this.state.toggleFromParticipar}/>
+          <Regras toggle={this.state.toggleFromRegras}/>
         </div>
+        {/*Mobile Devices */}
+        <div className="col-md-12 mt-4 text-center d-sm-none">
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromObjetivo}></img>
+          <Objetivo toggle={this.state.toggleFromObjetivo} />
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromParticipar}></img>
+          <Participar toggle={this.state.toggleFromParticipar}/>
+          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromRegras}></img>
+          <Regras toggle={this.state.toggleFromRegras}/>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Objetivo extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
+        <h1>Objetivo</h1>
+        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+      </div>
+    )
+  }
+}
+
+class Participar extends Component {
+  render() {
+    return (
+      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
+        <h1>Participar</h1>
+        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+      </div>
+    )
+  }
+}
+
+class Regras extends Component {
+  render() {
+    return (
+      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
+        <h1>Regras</h1>
+        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
       </div>
     )
   }
 }
 
 class BodySuperior extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      esconderFormLeague: false,
+      esconderFormHearth: false
+    };
+
+    this.toggleFromLeague = this.toggleFromLeague.bind(this);
+    this.toggleFromHearthstone = this.toggleFromHearthstone.bind(this);
+  }
+
+  toggleFromLeague () {
+    let estado = this.state.esconderFormLeague;
+    this.setState({
+      esconderFormLeague: !estado
+    })
+  }
+
+  toggleFromHearthstone () {
+    let estado = this.state.esconderFormHearth;
+    this.setState({
+      esconderFormHearth: !estado
+    })
+  }
+
   render() {
     return (
       <div className="row m-0 p-4" style={{backgroundColor: '#A3A3AB'}}>
-        <div className="col-sm-12 text-center">
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
-          <h1>Form Futuro Kappa Pride Fon</h1>
+        <div className="col-sm-12 mb-4 text-center">
+          <h1>Clique e faça já sua inscrição para nossa peneira!</h1>
+          <div className="m-4">
+            <button className="mr-1 btn btn-lg btn-dark" onClick={this.toggleFromLeague}>League of Legends</button>
+            <button className="ml-1 btn btn-lg btn-light" onClick={this.toggleFromHearthstone}>Hearthstone</button>
+          </div>
+        </div>
+        <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
+          <p>NANI</p>
+          <div className="col-sm-5 mb-4 mt-2 container-fluid embed-responsive embed-responsive-4by3">
+            <iframe className="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+          </div>
+        </div>
+
+        <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
+          <p>NANI</p>
+          <div className="col-sm-5 mb-4 mt-2 container-fluid embed-responsive embed-responsive-4by3">
+            <iframe className="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+          </div>
         </div>
       </div>
     )
-  }
-}
-
-class App extends Component {
-  render() {
-    return (
-      <Homepage />
-    );
   }
 }
 
