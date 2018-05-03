@@ -59,17 +59,20 @@ class Slider extends Component {
     return (
       <div className="row m-0">
         <div className="col-sm-8 p-0">
-          <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+          <div id="mainSlider" className="carousel slide" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img className="d-block w-100" src={require('./download.svg')} alt="First slide"/>
-                  <div className="carousel-caption d-none d-md-block">
-                    <h5>League of Legends</h5>
-                    <p>O game mais KappaPride</p>
-                  </div>
+                <img className="d-block w-100" src={require('./darkOwlsCapa1280x640.png')} alt="First slide"/>
               </div>
               <div className="carousel-item">
                 <img className="d-block w-100" src={require('./download.svg')} alt="Second slide"/>
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>League of Legends</h5>
+                  <p>O game mais KappaPride</p>
+                </div>
+              </div>
+              <div className="carousel-item">
+                <img className="d-block w-100" src={require('./download.svg')} alt="Third slide"/>
                 <div className="carousel-caption d-none d-md-block">
                   <h5>Hearthstone</h5>
                   <p>O game mais Resident Sleeper</p>
@@ -166,9 +169,9 @@ class SubInfoContainer extends Component {
     return (
       <div className="container-fluid mb-4">
         <div className="col-md-12 m-0 mt-3 text-center">
-          <h1 className="display-2 d-none d-md-block">KappaPride</h1>
-          <h1 className="display-5 d-sm-none">KappaPride</h1>
-          <h3 className="text-muted">Subtítulo PogChamp</h3>
+          <h1 className="display-2 d-none d-md-block">Hora do Duelo!</h1>
+          <h1 className="display-5 d-sm-none">Hora do Duelo!</h1>
+          <h3 className="text-muted">Conheça mais sobre a atlética da Ciência da Computação do UNIFESO</h3>
         </div>
         {/*Grandes Devices */}
         <div className="col-md-12 mt-4 text-center d-none d-md-block">
@@ -194,10 +197,6 @@ class SubInfoContainer extends Component {
 }
 
 class Objetivo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
@@ -266,17 +265,16 @@ class BodySuperior extends Component {
             <button className="ml-1 btn btn-lg btn-light" onClick={this.toggleFromHearthstone}>Hearthstone</button>
           </div>
         </div>
-        <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
-          <p>NANI</p>
-          <div className="col-sm-5 mb-4 mt-2 container-fluid embed-responsive embed-responsive-4by3">
-            <iframe className="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+        <div className="row col-md-12">
+          <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
+            <div className="col-md-5 mb-4 mt-2">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0"></iframe>
+            </div>
           </div>
-        </div>
-
-        <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
-          <p>NANI</p>
-          <div className="col-sm-5 mb-4 mt-2 container-fluid embed-responsive embed-responsive-4by3">
-            <iframe className="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+          <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
+            <div className="col-md-5 mb-4 mt-2">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+            </div>
           </div>
         </div>
       </div>
