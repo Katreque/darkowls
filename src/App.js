@@ -17,6 +17,8 @@ class Homepage extends Component {
         <Slider />
         <SubInfoContainer />
         <BodySuperior />
+        <BodyInferior />
+        <Footer />
       </div>
     )
   }
@@ -79,14 +81,6 @@ class Slider extends Component {
                 </div>
               </div>
             </div>
-            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="sr-only">Next</span>
-            </a>
           </div>
         </div>
         <div className="col-sm-4" style={{backgroundColor: '#A3A3AB'}}>
@@ -260,23 +254,58 @@ class BodySuperior extends Component {
       <div className="row m-0 p-4" style={{backgroundColor: '#A3A3AB'}}>
         <div className="col-sm-12 mb-4 text-center">
           <h1>Clique e faça já sua inscrição para nossa peneira!</h1>
-          <div className="m-4">
-            <button className="mr-1 btn btn-lg btn-dark" onClick={this.toggleFromLeague}>League of Legends</button>
-            <button className="ml-1 btn btn-lg btn-light" onClick={this.toggleFromHearthstone}>Hearthstone</button>
-          </div>
-        </div>
-        <div className="row col-md-12">
-          <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
-            <div className="col-md-5 mb-4 mt-2">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0"></iframe>
+          <div className="row mt-4">
+            <div className="col-sm-4">
             </div>
-          </div>
-          <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
-            <div className="col-md-5 mb-4 mt-2">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+            <div className="col-sm-4">
+              <button className="btn btn-lg btn-dark btn-block" onClick={this.toggleFromLeague}>League of Legends</button>
+              <button className="btn btn-lg btn-light btn-block" onClick={this.toggleFromHearthstone}>Hearthstone</button>
+            </div>
+            <div className="col-sm-4">
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="row">
+              <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
+                <div className="col-md-6 d-none d-sm-block">
+                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0"></iframe>
+                </div>
+              </div>
+              <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
+                <div className="col-md-6 d-none d-sm-block">
+                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class BodyInferior extends Component {
+  render() {
+    return(
+      <div className="row m-4">
+        <div className="col-sm-12 text-center">
+          <h1>Novidades em breve!</h1>
+          <h3 className="text-muted d-none d-sm-block">Qualquer dúvida, dentre em contato pelo email: <strong>dacc.unifeso@gmail.com</strong></h3>
+          <h4 className="text-muted d-block d-sm-none">Qualquer dúvida, dentre em contato pelo email: <strong>dacc.unifeso@gmail.com</strong></h4>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Footer extends Component {
+  render() {
+    return(
+      <div className="card-footer text-muted">
+        {/*<span className="text-left linkFooterColor">Dark Owls 2018 - Os Direitos são reservados</span>*/}
+        <a href="https://github.com/Katreque/darkowls" target="_blank" className="linkFooterColor text-right">Renan "Katreque" Souza | GitHub</a>
       </div>
     )
   }

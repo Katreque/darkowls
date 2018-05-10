@@ -11,6 +11,14 @@ body {
   -o-animation: fadein 1s;
 }
 
+.linkFooterColor {
+  color: #6c757d;
+}
+
+.linkFooterColor:hover {
+  color: #343a40;
+}
+
 @keyframes fadein {
     from {
         opacity:0;
