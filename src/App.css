@@ -42,6 +42,64 @@ body {
   display: none;
 }
 
+.handPointer {
+  cursor: pointer;
+}
+
+.customCard:hover {
+  background-color: #1f2326;
+  transform: scale(1.05);
+  transition: all .2s ease-in-out;
+}
+
+.fadeinAnimation {
+  animation: fadein 1s;
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -o-animation: fadein 1s;
+}
+
+.linkFooterColor {
+  color: #6c757d;
+}
+
+.linkFooterColor:hover {
+  color: #343a40;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari e Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import './App.css';
+
+const idHome = "home";
+const idInformacao = "informacao";
+const idInscricao = "inscricao";
+const idContato = "contato";
 
 class App extends Component {
   render() {
@@ -12,7 +18,7 @@ class App extends Component {
 class Homepage extends Component {
   render() {
     return (
-      <div>
+      <div id={idHome}>
         <Navbar />
         <Slider />
         <SubInfoContainer />
@@ -25,6 +31,17 @@ class Homepage extends Component {
 }
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.smoothScroll = this.smoothScroll.bind(this);
+  }
+
+  smoothScroll(id) {
+    $('html').animate({
+        scrollTop: $('#' + id).offset().top
+      }, 'slow')
+  }
+
   render() {
     return (
       <nav className="navbar sticky-top navbar-expand-lg text-light bg-dark">
@@ -35,19 +52,16 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link linkNavBar" href="#">Home</a>
+              <a className="nav-link linkNavBar handPointer" onClick={() => this.smoothScroll(idHome)}>Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link linkNavBar" href="#">League of Legends</a>
+              <a className="nav-link linkNavBar handPointer" onClick={() => this.smoothScroll(idInformacao)}>Informações</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link linkNavBar" href="#">Hearthstone</a>
+              <a className="nav-link linkNavBar handPointer" onClick={() => this.smoothScroll(idInscricao)}>Inscrição</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link linkNavBar" href="#">Sobre</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link linkNavBar" href="#">Contato</a>
+              <a className="nav-link linkNavBar handPointer" onClick={() => this.smoothScroll(idContato)}>Contato</a>
             </li>
           </ul>
         </div>
@@ -94,20 +108,25 @@ class Slider extends Component {
 class InfosImportantesContainer extends Component {
   render() {
     return (
-      <div className="m-2">
-        <blockquote className="blockquote text-center">
-          <p className="mb-0">Vocês são todos uns 4heads!</p>
-          <footer className="blockquote-footer">Katreque em <cite title="Source Title">O PogChamp</cite></footer>
-        </blockquote>
-        <blockquote className="blockquote text-center">
-          <p className="mb-0">Biri biri!</p>
-          <footer className="blockquote-footer">Biri biri em <cite title="Source Title">SehLoiro</cite></footer>
-        </blockquote>
-        <blockquote className="blockquote text-center">
-          <p className="mb-0">Lago ai, lagou aqui?</p>
-          <footer className="blockquote-footer">Yoda em <cite title="Source Title">Kappa Pride City</cite></footer>
-        </blockquote>
-
+      <div className="m-2 mt-3 mb-3">
+        <div className="card customCard text-center text-white bg-dark m-2">
+          <div className="customCard card-body">
+            <h5 className="card-title">League & HS</h5>
+            <p className="card-text m-0">Os primeiros times da Dark Owls</p>
+          </div>
+        </div>
+        <div className="card text-center text-white bg-dark m-2">
+          <div className="customCard card-body">
+            <h5 className="card-title">As inscrições estão abertas!</h5>
+            <p className="card-text m-0">Saiba como participar da peneira abaixo</p>
+          </div>
+        </div>
+        <div className="card customCard text-center text-white bg-dark m-2">
+          <div className="customCard card-body">
+            <h5 className="card-title">Fique atento as datas!</h5>
+            <p className="card-text m-0">As inscrições se encerram no dia 26/05</p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -161,7 +180,7 @@ class SubInfoContainer extends Component {
 
   render() {
     return (
-      <div className="container-fluid mb-4">
+      <div id={idInformacao} className="container-fluid mb-4">
         <div className="col-md-12 m-0 mt-3 text-center">
           <h1 className="display-2 d-none d-md-block">Hora do Duelo!</h1>
           <h1 className="display-5 d-sm-none">Hora do Duelo!</h1>
@@ -169,20 +188,20 @@ class SubInfoContainer extends Component {
         </div>
         {/*Grandes Devices */}
         <div className="col-md-12 mt-4 text-center d-none d-md-block">
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromObjetivo}></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromParticipar}></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromRegras}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromRegras} alt=""></img>
           <Objetivo toggle={this.state.toggleFromObjetivo} />
           <Participar toggle={this.state.toggleFromParticipar}/>
           <Regras toggle={this.state.toggleFromRegras}/>
         </div>
         {/*Mobile Devices */}
         <div className="col-md-12 mt-4 text-center d-sm-none">
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromObjetivo}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
           <Objetivo toggle={this.state.toggleFromObjetivo} />
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromParticipar}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
           <Participar toggle={this.state.toggleFromParticipar}/>
-          <img src={require("./socialMedia.svg")} className="rounded m-2" onClick={this.toggleFromRegras}></img>
+          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromRegras} alt=""></img>
           <Regras toggle={this.state.toggleFromRegras}/>
         </div>
       </div>
@@ -251,35 +270,37 @@ class BodySuperior extends Component {
 
   render() {
     return (
-      <div className="row m-0 p-4" style={{backgroundColor: '#A3A3AB'}}>
+      <div id={idInscricao} className="row m-0 p-4" style={{backgroundColor: '#A3A3AB'}}>
         <div className="col-sm-12 mb-4 text-center">
           <h1>Clique e faça já sua inscrição para nossa peneira!</h1>
           <div className="row mt-4">
             <div className="col-sm-4">
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-4 d-none d-sm-block">
               <button className="btn btn-lg btn-dark btn-block" onClick={this.toggleFromLeague}>League of Legends</button>
               <button className="btn btn-lg btn-light btn-block" onClick={this.toggleFromHearthstone}>Hearthstone</button>
+            </div>
+            <div className="col-sm-4 d-block d-sm-none">
+              <a className="btn btn-lg btn-dark btn-block" href="https://goo.gl/forms/qxekl3J9nvTgfrCe2" target="_blank" rel="noopener noreferrer">League of Legends</a>
+              <a className="btn btn-lg btn-light btn-block" href="https://goo.gl/forms/bbmd2qCNSCAZaz3t2" target="_blank" rel="noopener noreferrer">Hearthstone</a>
             </div>
             <div className="col-sm-4">
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-12">
-            <div className="row">
-              <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
-                <div className="col-md-6 d-none d-sm-block">
-                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0"></iframe>
-                </div>
-              </div>
-              <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
-                <div className="col-md-6 d-none d-sm-block">
-                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
-                </div>
+        <div className="col-sm-12">
+          <div className="d-flex justify-content-center">
+            <div className={this.state.esconderFormLeague?'d-block':'d-none'}>
+              <div className="d-none d-sm-block m-2 fadeinAnimation">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWOWhQsd-Uau-SZ3VeV5DKyqReo2yjYZb1m6Wwid61X1aBtQ/viewform?embedded=true" title="LoL" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0"></iframe>
               </div>
             </div>
-          </div>
+            <div className={this.state.esconderFormHearth?'d-block':'d-none'}>
+              <div className="d-none d-sm-block m-2 fadeinAnimation">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9x_iW4y6vy1GqrXKrSqptUOV7nx0XgBDkp_lO1WKh3MNuGA/viewform?embedded=true" title="HS" width="660" height="500" frameBorder="0" marginHeight="0" marginWidth="0">Carregando…</iframe>
+              </div>
+            </div>
+        </div>
         </div>
       </div>
     )
@@ -289,7 +310,7 @@ class BodySuperior extends Component {
 class BodyInferior extends Component {
   render() {
     return(
-      <div className="row m-4">
+      <div id={idContato} className="row m-4">
         <div className="col-sm-12 text-center">
           <h1>Novidades em breve!</h1>
           <h3 className="text-muted d-none d-sm-block">Qualquer dúvida, dentre em contato pelo email: <strong>dacc.unifeso@gmail.com</strong></h3>
@@ -303,9 +324,14 @@ class BodyInferior extends Component {
 class Footer extends Component {
   render() {
     return(
-      <div className="card-footer text-muted">
-        {/*<span className="text-left linkFooterColor">Dark Owls 2018 - Os Direitos são reservados</span>*/}
-        <a href="https://github.com/Katreque/darkowls" target="_blank" className="linkFooterColor text-right">Renan "Katreque" Souza | GitHub</a>
+      <div>
+        <div className="card-footer text-muted d-none d-sm-block">
+          {/*<span className="text-left linkFooterColor">Dark Owls 2018 - Os Direitos são reservados</span>*/}
+          <a href="https://github.com/Katreque/darkowls" target="_blank" rel="noopener noreferrer" className="linkFooterColor text-right">Renan "Katreque" Souza | GitHub</a>
+        </div>
+        <div className="card-footer text-muted text-center d-block d-sm-none">
+          <a href="https://github.com/Katreque/darkowls" target="_blank" rel="noopener noreferrer" className="linkFooterColor text-right">Renan "Katreque" Souza | GitHub</a>
+        </div>
       </div>
     )
   }
