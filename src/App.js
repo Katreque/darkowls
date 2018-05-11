@@ -187,7 +187,7 @@ class SubInfoContainer extends Component {
           <h3 className="text-muted">Conheça mais sobre a atlética da Ciência da Computação do UNIFESO</h3>
         </div>
         {/*Grandes Devices */}
-        <div className="col-md-12 mt-4 text-center d-none d-md-block">
+        <div className="col-sm-12 mt-4 text-center d-none d-md-block">
           <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
           <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
           <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromRegras} alt=""></img>
@@ -196,7 +196,7 @@ class SubInfoContainer extends Component {
           <Regras toggle={this.state.toggleFromRegras}/>
         </div>
         {/*Mobile Devices */}
-        <div className="col-md-12 mt-4 text-center d-sm-none">
+        <div className="col-sm-12 mt-4 text-center d-sm-none">
           <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
           <Objetivo toggle={this.state.toggleFromObjetivo} />
           <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
@@ -212,9 +212,21 @@ class SubInfoContainer extends Component {
 class Objetivo extends Component {
   render() {
     return (
-      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
-        <h1>Objetivo</h1>
-        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+      <div className={this.props.toggle?'d-block':'d-none'}>
+        <div className="card text-white bg-dark m-2">
+          <h1 className="card-header text-center fadeinAnimation">Objetivo</h1>
+          <div className="card-body text-left fadeinAnimation">
+            <p>O cenário de e-Sports está em constante crescimento em todo o mundo e no Brasil não é diferente.
+               Apesar do início do movimento, ainda é um campo pouco visto e reconhecido por muitas instiuições.
+            </p>
+            <p>
+               Nosso objetivo é mostrar que através da Dark Owls, fundada em 2018 por Renan "Katreque" Souza,
+               podemos ter grande impacto positivo seja no cenário competitivo de e-Sports, para a instituição
+               levando seu nome aos principais eventos nacionais e para os estudantes envolvidos na Atlética,
+               ganhando experiência e conhecimento sobre o funcionamento da área, uma das mais aquecidas atualmente.
+             </p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -223,9 +235,13 @@ class Objetivo extends Component {
 class Participar extends Component {
   render() {
     return (
-      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
-        <h1>Participar</h1>
-        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+      <div className={this.props.toggle?'d-block':'d-none'}>
+        <div className="card text-center text-white bg-dark m-2">
+          <h1 className="card-header fadeinAnimation">Participar</h1>
+          <div className="card-body fadeinAnimation">
+            <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -234,9 +250,13 @@ class Participar extends Component {
 class Regras extends Component {
   render() {
     return (
-      <div className={this.props.toggle?'d-block fadeinAnimation':'d-none fadeinAnimation'}>
-        <h1>Regras</h1>
-        <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+      <div className={this.props.toggle?'d-block':'d-none'}>
+        <div className="card text-center text-white bg-dark m-2">
+          <h1 className="card-header fadeinAnimation">Regras</h1>
+          <div className="card-body fadeinAnimation">
+            <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+          </div>
+        </div>
       </div>
     )
   }
