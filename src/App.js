@@ -84,14 +84,12 @@ class Slider extends Component {
                 <img className="d-block w-100" src={require('./download.svg')} alt="Second slide"/>
                 <div className="carousel-caption d-none d-md-block">
                   <h5>League of Legends</h5>
-                  <p>O game mais KappaPride</p>
                 </div>
               </div>
               <div className="carousel-item">
                 <img className="d-block w-100" src={require('./download.svg')} alt="Third slide"/>
                 <div className="carousel-caption d-none d-md-block">
                   <h5>Hearthstone</h5>
-                  <p>O game mais Resident Sleeper</p>
                 </div>
               </div>
             </div>
@@ -136,10 +134,31 @@ class SubInfoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleFromObjetivo: false,
+      toggleFromObjetivo: true,
       toggleFromParticipar: false,
       toggleFromRegras: false
     }
+
+    this.arrayIdButtons = [
+      {
+        id: 'botaoObjetivoDesktop'
+      },
+      {
+        id: 'botaoParticiparDesktop'
+      },
+      {
+        id: 'botaoInstitucionalDesktop'
+      },
+      {
+        id: 'botaoObjetivoMobile'
+      },
+      {
+        id: 'botaoParticiparMobile'
+      },
+      {
+        id: 'botaoInstitucionalMobile'
+      }
+    ];
 
     this.toggleFromObjetivo = this.toggleFromObjetivo.bind(this);
     this.toggleFromParticipar = this.toggleFromParticipar.bind(this);
@@ -148,34 +167,74 @@ class SubInfoContainer extends Component {
 
   toggleFromObjetivo() {
     let estado = this.state.toggleFromObjetivo;
-    this.toggleOffAll();
+    this.toggleDefault();
     this.setState({
       toggleFromObjetivo: !estado
+    }, () => {
+      this.toggleBotaoAtivo()
+      return this.smoothScrollInfo(idInformacao);
     })
   }
 
   toggleFromParticipar() {
     let estado = this.state.toggleFromParticipar;
-    this.toggleOffAll();
+    this.toggleDefault();
     this.setState({
       toggleFromParticipar: !estado
+    }, () => {
+      this.toggleBotaoAtivo();
+      return this.smoothScrollInfo(idInformacao);
     })
   }
 
   toggleFromRegras() {
     let estado = this.state.toggleFromRegras;
-    this.toggleOffAll();
+    this.toggleDefault();
     this.setState({
       toggleFromRegras: !estado
+    }, () => {
+      this.toggleBotaoAtivo();
+      return this.smoothScrollInfo(idInformacao);
     })
   }
 
-  toggleOffAll() {
+  toggleDefault() {
     this.setState({
       toggleFromObjetivo: false,
       toggleFromParticipar: false,
       toggleFromRegras: false
     })
+  }
+
+  toggleBotaoAtivo() {
+    let indicesAtivos = [];
+
+    if(!!this.state.toggleFromObjetivo) {
+      indicesAtivos = [0, 3];
+    }
+
+    if(!!this.state.toggleFromParticipar) {
+      indicesAtivos = [1, 4];
+    }
+
+    if(!!this.state.toggleFromRegras) {
+      indicesAtivos = [2, 5];
+    }
+
+    for(let i = 0; i < this.arrayIdButtons.length; i++) {
+      $('#' + this.arrayIdButtons[i].id).removeClass('btn-outline-dark');
+      if (i === indicesAtivos[0] || i === indicesAtivos[1]) {
+        $('#' + this.arrayIdButtons[i].id).addClass('btn-dark');
+      } else {
+        $('#' + this.arrayIdButtons[i].id).addClass('btn-outline-dark');
+      }
+    }
+  }
+
+  smoothScrollInfo(id) {
+    $('html').animate({
+        scrollTop: $('#' + id).offset().top
+      }, 'slow')
   }
 
   render() {
@@ -187,22 +246,36 @@ class SubInfoContainer extends Component {
           <h3 className="text-muted">Conheça mais sobre a atlética da Ciência da Computação do UNIFESO</h3>
         </div>
         {/*Grandes Devices */}
-        <div className="col-sm-12 mt-4 text-center d-none d-md-block">
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromRegras} alt=""></img>
-          <Objetivo toggle={this.state.toggleFromObjetivo} />
-          <Participar toggle={this.state.toggleFromParticipar}/>
-          <Regras toggle={this.state.toggleFromRegras}/>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4 mt-4 text-center d-none d-md-block">
+              <button id="botaoObjetivoDesktop" className="btn btn-lg btn-dark btn-block" onClick={this.toggleFromObjetivo}>Objetivo</button>
+            </div>
+            <div className="col-sm-4 mt-4 text-center d-none d-md-block">
+              <button id="botaoParticiparDesktop" className="btn btn-lg btn-outline-dark btn-block" onClick={this.toggleFromParticipar}>Participe</button>
+            </div>
+            <div className="col-sm-4 mt-4 text-center d-none d-md-block">
+              <button id="botaoInstitucionalDesktop" className="btn btn-lg btn-outline-dark btn-block" onClick={this.toggleFromRegras}>Institucional</button>
+            </div>
+          </div>
+          <div className="col-sm-12 mt-4 text-center d-none d-md-block">
+            <Objetivo toggle={this.state.toggleFromObjetivo} />
+            <Participar toggle={this.state.toggleFromParticipar}/>
+            <Regras toggle={this.state.toggleFromRegras}/>
+          </div>
         </div>
         {/*Mobile Devices */}
         <div className="col-sm-12 mt-4 text-center d-sm-none">
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromObjetivo} alt=""></img>
-          <Objetivo toggle={this.state.toggleFromObjetivo} />
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromParticipar} alt=""></img>
-          <Participar toggle={this.state.toggleFromParticipar}/>
-          <img src={require("./socialMedia.svg")} className="rounded m-2 handPointer" onClick={this.toggleFromRegras} alt=""></img>
-          <Regras toggle={this.state.toggleFromRegras}/>
+          <div className="container">
+            <button id="botaoObjetivoMobile" className="btn btn-lg btn-dark btn-block mb-2" onClick={this.toggleFromObjetivo}>Objetivo</button>
+            <Objetivo toggle={this.state.toggleFromObjetivo} />
+
+            <button id="botaoParticiparMobile" className="btn btn-lg btn-outline-dark btn-block mt-2 mb-2" onClick={this.toggleFromParticipar}>Participe</button>
+            <Participar toggle={this.state.toggleFromParticipar}/>
+
+            <button id="botaoInstitucionalMobile" className="btn btn-lg btn-outline-dark btn-block mt-2 mb-2" onClick={this.toggleFromRegras}>Institucional</button>
+            <Regras toggle={this.state.toggleFromRegras}/>
+          </div>
         </div>
       </div>
     )
@@ -215,16 +288,21 @@ class Objetivo extends Component {
       <div className={this.props.toggle?'d-block':'d-none'}>
         <div className="card text-white bg-dark m-2">
           <h1 className="card-header text-center fadeinAnimation">Objetivo</h1>
-          <div className="card-body text-left fadeinAnimation">
-            <p>O cenário de e-Sports está em constante crescimento em todo o mundo e no Brasil não é diferente.
-               Apesar do início do movimento, ainda é um campo pouco visto e reconhecido por muitas instiuições.
+          <div className="card-body text-left fadeinAnimation m-3">
+            <p className="corTexto">
+              Para este primeiro ano de Atlética, o objetivo é formar e estabelecer times fortes
+              e competitivos para poderem disputar os principais campeonatos nacionais de e-Sports
+              com foco universitário no ano que vem.
             </p>
-            <p>
-               Nosso objetivo é mostrar que através da Dark Owls, fundada em 2018 por Renan "Katreque" Souza,
-               podemos ter grande impacto positivo seja no cenário competitivo de e-Sports, para a instituição
-               levando seu nome aos principais eventos nacionais e para os estudantes envolvidos na Atlética,
-               ganhando experiência e conhecimento sobre o funcionamento da área, uma das mais aquecidas atualmente.
-             </p>
+            <p className="corTexto">
+              Neste primeiro semestre, iremos focar no <strong className="text-white">League of Legends</strong> e <strong className="text-white">Hearthstone. </strong>
+              Por serem jogos que já estamos mais acostumados de lidar, escolhemos para nos facilitar em relação
+              a organização e no gerenciamento das equipes.
+            </p>
+            <p className="corTexto">
+              Com base nas experiências, feedbacks e andamento dos times, nossa meta é no segundo semestre
+              criar <strong className="text-white">mais dois times</strong> de outros games para assim entrarem na Atlética.
+            </p>
           </div>
         </div>
       </div>
@@ -236,10 +314,16 @@ class Participar extends Component {
   render() {
     return (
       <div className={this.props.toggle?'d-block':'d-none'}>
-        <div className="card text-center text-white bg-dark m-2">
-          <h1 className="card-header fadeinAnimation">Participar</h1>
-          <div className="card-body fadeinAnimation">
-            <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+        <div className="card text-white bg-dark m-2">
+          <h1 className="card-header text-center fadeinAnimation">Participe</h1>
+          <div className="card-body text-left fadeinAnimation m-3">
+            <p className="corTexto">
+              Fazer sua inscrição na peneira é bem simples. Basta ir na sessão de <strong className="text-white">Inscrição</strong>, escolher o formulário
+              do jogo no qual quer participar, preenchê-lo e ficar atento em seu email. Data e avisos serão passados por lá.
+            </p>
+            <p className="corTexto">
+              A peneira é totalmente <strong className="text-white">de graça</strong>, para que todos possam ter a oportunidade de participar.
+            </p>
           </div>
         </div>
       </div>
@@ -251,10 +335,20 @@ class Regras extends Component {
   render() {
     return (
       <div className={this.props.toggle?'d-block':'d-none'}>
-        <div className="card text-center text-white bg-dark m-2">
-          <h1 className="card-header fadeinAnimation">Regras</h1>
-          <div className="card-body fadeinAnimation">
-            <p>O objetivo é ser o objetivo dentro do objetivo objetivado sempre objetivando os nosso objetivos. Kappa</p>
+        <div className="card text-white bg-dark m-2">
+          <h1 className="d-none d-sm-block card-header text-center fadeinAnimation">Institucional</h1>
+          <h2 className="d-block d-sm-none card-header text-center fadeinAnimation">Institucional</h2>
+          <div className="card-body text-left fadeinAnimation m-3">
+            <p className="corTexto">
+              O cenário de e-Sports está em constante crescimento em todo o mundo e no Brasil não é diferente.
+              Apesar do início do movimento, ainda é um campo pouco visto e reconhecido por muitas instituições.
+            </p>
+            <p className="corTexto">
+               Iremos mostrar que através da <strong className="text-white">Dark Owls</strong>, fundada em 2018 por Renan "Katreque" Souza,
+               podemos ter grande impacto positivo seja no cenário competitivo de e-Sports, para a instituição
+               levando seu nome aos principais eventos nacionais e para os estudantes envolvidos na Atlética,
+               ganhando experiência e conhecimento sobre o funcionamento da área, uma das mais aquecidas atualmente.
+             </p>
           </div>
         </div>
       </div>

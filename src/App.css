@@ -59,6 +59,10 @@ body {
   -o-animation: fadein 1s;
 }
 
+.corTexto {
+  color: #d2d2d2
+}
+
 .linkFooterColor {
   color: #6c757d;
 }
