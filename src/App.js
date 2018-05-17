@@ -80,18 +80,6 @@ class Slider extends Component {
               <div className="carousel-item active">
                 <img className="d-block w-100" src={require('./darkOwlsCapa1280x640.png')} alt="First slide"/>
               </div>
-              <div className="carousel-item">
-                <img className="d-block w-100" src={require('./download.svg')} alt="Second slide"/>
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>League of Legends</h5>
-                </div>
-              </div>
-              <div className="carousel-item">
-                <img className="d-block w-100" src={require('./download.svg')} alt="Third slide"/>
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>Hearthstone</h5>
-                </div>
-              </div>
             </div>
           </div>
         </div>
